@@ -1,0 +1,98 @@
+body {
+	text-align: center; 
+  font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif 
+  font-size: 100%;
+  background-color: #A63A50;
+  color: #F0E7D8;
+}
+
+h1, h3 {
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h5 {
+  font-weight: bold;
+  font-size: 100%;
+}
+
+p {
+}
+
+img {
+  width: 100%;
+}
+
+form {
+  text-align: left;
+  width: 60%;
+  margin: 0 auto;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background-color: #A63A50;
+  color: #F0E7D8;
+  border: 0;
+  margin-bottom: 30px;
+}
+
+.btn-primary.active, .btn-primary:active, .btn-primary.hover, .btn-primary:hover {
+  color: #F0E7D8;
+  background-color: #AB9B96;
+}
+
+.bg1 {
+  background-color: #F0E7D8;
+  color: #A1674A;  
+}
+
+.bg2 {
+  background-color: #AB9B96;
+  color: #F0E7D8;
+}
+
+.bg3 {
+  background-color: #BA6E6E;
+  color: #F0E7D8;
+  padding-bottom: 15px
+}
+
+table {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+th {
+  width: 50%;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid; 
+}
+
+td {
+  text-align: center;
+  font-style: italic;
+  padding: 5px;
+  border-bottom: 1px solid; 
+}
+
+#map {
+  height: 300px;
+}
+
+.testimonial {
+  text-align: right;
+  font-size: 150%;
+  padding-top: 30px;
+  margin-bottom: 20px;
+}
