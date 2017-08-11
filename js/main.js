@@ -8,8 +8,28 @@ $('li').on('click', function() {
     $(this).addClass('active');
 });
 
+
 // STEP 2: Organise data for vehicle options
-	// For each set of options, create an array of objects.
+
+// For each set of options, create an array of objects.
+var vehicleOptions = [
+	{choice: 'cadenza', price: 35000}, 
+	{choice: 'forte', price: 20000}, 
+	{choice: 'optima', price: 29050}, 
+	{choice: 'sedona', price: 38650}, 
+	{choice: 'soul', price: 42200}
+];
+var colorOptions = [
+	{choice: 'black', price: 50}, 
+	{choice: 'white', price: 100}, 
+	{choice: 'silver', price: 250}
+];
+var packageOptions = [
+	{choice: 'Rear Camera', price: 150}, 
+	{choice: 'LED Positioning Light', price: 150}, 
+	{choice: 'Rear Camera and LED Positioning Light',price: 200}
+];
+
 
 // STEP 3: Create object for selected user options
 	// Create object, which updates any time the user makes a selection.
