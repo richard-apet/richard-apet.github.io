@@ -1,4 +1,4 @@
-
+/* Default starter code css */
 * {
   box-sizing: border-box;
 }
@@ -164,6 +164,19 @@ ul {
 
 li span {
   text-transform: capitalize;
+}
+
+/* Bespoke CSS */
+* {
+  font-family: "Arial Rounded MT Bold","Helvetica Rounded",Arial,sans-serif;
+}
+
+
+/* Header */
+header {
+  color: #FFFFFF;
+  background-color: #7B9E87;
+  text-align: center;
 }
 
 /* Unit 9 link */
