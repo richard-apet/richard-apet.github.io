@@ -32,7 +32,14 @@ var packageOptions = [
 
 
 // STEP 3: Create object for selected user options
-	// Create object, which updates any time the user makes a selection.
+
+// Create object, which updates any time the user makes a selection.
+var carSelection = {
+    vehicle: {choice: 'Not Selected', price: 0},
+    color: {choice: 'Not Selected', price: 0},
+    package: {choice: 'Not Selected', price: 0}
+};
+
 
 // STEP 4: When the user clicks on one of the tab ‘lis,’ only the relevant HTML for that step will be displayed.
 	// By default (when the page loads), the selection of available vehicles (i.e., images of the five car choices) should display in the sidebar.
