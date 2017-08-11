@@ -1,98 +1,68 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Monk’s Cafe</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" href="css/style.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <title>Build your car!</title>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- custom css -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
 
-			<h1>Monk’s Cafe</h1>
-			<h4>“The Coffee Shop”</h4>
-			<img src="images/toms-restaurant.jpg" alt="Tom's Restaurant">
+  <script id="vehicle-options-template" type="text/x-handlebars-template">
+    <div class="col-md-6 vehicle-option {{feature}}" data-panel="vehicle" data-price="{{price}}" data-option="{{feature}}"></div>
+  </script>
 
-		</div>
+  <script id="color-options-template" type="text/x-handlebars-template">
+    <div class="col-xs-3 panel-body color-option {{feature}}" data-panel="color" data-price="{{price}}" data-option="{{feature}}"></div>
+  </script>
 
-		<div class="row bg1">
-			<div class="col-md-12">
+  <script id="package-options-template" type="text/x-handlebars-template">
+    <div class="panel panel-default">
+      <div class="panel-heading package-option" data-panel="package"data-price="{{price}}" data-option="{{feature}}">{{feature}}</div>
+    </div>
+  </script>
 
-				<h3>Reservations</h3>
+  <script id="summary-options-template" type="text/x-handlebars-template">
+    <div class="summary-option">
+      <ul>
+        <li><strong>Vehicle</strong> &mdash; <span>{{vehicle.choice}}</span>: ${{vehicle.price}}</li>
+        <li><strong>Color</strong> &mdash; <span>{{color.choice}}</span>: ${{color.price}}</li>
+        <li><strong>Package</strong> &mdash; <span>{{package.choice}}</span>: ${{package.price}}</li>
+      </ul>
+    </div>
+  </script>
 
-				<div class="col-md-6">
+  <div class="container-fluid">
+    <div class="row app-container">
 
-					<h4>Make a Reservation:</h4>
+      <div class="col-md-4 options-container">
+        <!-- build a car navigation -->
+        <ul class="nav nav-tabs nav-justified navigation">
+          <li data-tab="vehicle" class="active"><a class="text-warning" href="#">1. Vehicle</a></li>
+          <li data-tab="color"><a class="text-warning" href="#">2. Color</a></li>
+          <li data-tab="package"><a class="text-warning" href="#">3. Packages</a></li>
+          <li data-tab="summary"><a class="text-warning" href="#">4. Summary</a></li>
+        </ul>
 
-					<form>
-						<label>Name:</label>
-					    <input type="text" placeholder="Name" class="form-control">
-						<label>Day:</label>
-					    <input type="text" placeholder="Day" class="form-control">
-					    <br>
-					    <button class="btn btn-primary btn-block">Confirm Reservation</button>
-					</form>
-				</div>
+        <!-- color options -->
+        <div id="options-display">
+        </div>
 
-				<div class="col-md-6">
-					<h4>Existing Reservations:</h4>
+        <!-- footer -->
+        <div class="col-md-4 navbar-fixed-bottom">
+          <h1 class="cost">Cost: <span class="cost-display"></span></h1>
+        </div>
+      </div>
 
-					<table>
-						<thead>
-							<th>Name</th>
-							<th>Day</th>
-						</thead>
-						<tbody>
-							<tr>
-								<td>[ Name will publish here ]</td>
-								<td>[ Date will publish here ]</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+      <div class="col-md-8 demo-container">
+        <img class="col-md-12 vehicle-display" src="">
+      </div>
+    </div>
+  </div>
 
-			</div>
-		</div>
-
-		<div class="row bg2">
-
-			<h3>Come Dine with Us</h3>
-
-			<div id="map" class="col-md-12"></div>
-
-		</div>
-
-		<div class="row bg3">
-
-			<h3>Customer Reviews</h3>
-
-			<div class="col-md-6">
-				<img src="images/jerry.jpg" alt="Jerry">
-			</div>
-
-			<div class="col-md-6 testimonial">
-				<em>“Big lettuce, big carrots, tomatoes like volleyballs.”</em>
-				<h5>— Jerry Seinfeld, on The BIG Salad</h5>
-			</div>
-		</div>
-	</div>
-
-	<script src="js/jquery-3.0.0.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB84x6GJWPh9fmKRGartp1F2Hto9WsYVH0&callback=initMap"
-  type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
