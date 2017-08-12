@@ -1,12 +1,5 @@
-// STEP 1: Active classes on elements
-
-// When a user clicks on one of the steps (i.e., an ‘li’ element) a class ‘.active’ should be added to the ‘li’ the user clicked 
-$('li').on('click', function() {
-	// Remove ‘.active’ class on any elements that are inactive. 
-    $('li').removeClass('active');
-	// Ensure '.active’ adds appropriate styling.
-    $(this).addClass('active');
-});
+// GLOBAL VARIABLES:
+var $optionContainer = $('#options-display');
 
 
 // STEP 2: Organise data for vehicle options
@@ -41,20 +34,96 @@ var carSelection = {
 };
 
 
-// STEP 4: When the user clicks on one of the tab ‘lis,’ only the relevant HTML for that step will be displayed.
+
+
+// STEP 1: Active classes on elements
+
+// When a user clicks on one of the steps (i.e., an ‘li’ element) a class ‘.active’ should be added to the ‘li’ the user clicked 
+$('li').on('click', function() {
+	// Remove ‘.active’ class on any elements that are inactive. 
+    $('li').removeClass('active');
+	// Ensure '.active’ adds appropriate styling.
+    $(this).addClass('active');
+
+	// Step 4: When the user clicks on one of the tab ‘lis,’ only the relevant HTML for that step will be displayed.
+
+	// 4.2: Find out which step the user has clicked by accessing the ‘data-tab’ attribute.
+	var optionsDisplayed = $(this).data('tab');
+
+    // 4.1: Empty the ‘#options-display’ element.
+    $optionContainer.empty();
+
+    displayPanelContent(optionsDisplayed)
+});
+
+// STEP 4: 
+
+
+var data = {itemDescription: $('#newItemDescription').val() };
+
+var newListItemHTML = template(data);
+
+
+
+function displayPanelContent(tabDisplay) {
+    var source = $('#' + tabDisplay + '-options-template').html();
+    var template = Handlebars.compile(source);
+
+	// 4.3 Use a ‘switch’ statement to render the related template displaying appropriate options for that step using Handlebars ( Handlebars templates have been provided in the HTML for the vehicle, color, package, and summary steps).
 	// By default (when the page loads), the selection of available vehicles (i.e., images of the five car choices) should display in the sidebar.
-	// Use data attributes to find out information about the tab the user has clicked. These data attributes have already been added in the HTML, you’ll just need to access them using jQuery or JavaScript
-	// When a user clicks on a step:
-		// 1. Empty the ‘#options-display’ element.
-		// 2. Find out which step the user has clicked by accessing the ‘data-tab’ attribute.
-		// 3. Use a ‘switch’ statement to render the related template displaying appropriate options for that step using Handlebars ( Handlebars templates have been provided in the HTML for the vehicle, color, package, and summary steps).
-		// 4. If the user clicked the vehicle, color, or package tab, iterate through the related array and use Handlebars to render a template for each item in that array. 
-		// 5. If the user clicked the summary tab, pass the data from the ‘carSelection’ object (containing the vehicle, color, and package the user has selected, along with the price) to Handlebars.
+
+	// 4.4: If the user clicked the vehicle, color, or package tab, iterate through the related array and use Handlebars to render a template for each item in that array. 
+
+    switch (tabDisplay) {
+        case 'vehicle':
+            renderOptions(vehicleOptions, template, tabDisplay);
+            break;
+        case 'color':
+            renderOptions(colorOptions, template, tabDisplay);
+            break;
+        case 'package':
+            renderOptions(packageOptions, template, tabDisplay);
+            break;
+        case 'summary':
+            renderOptions(carSelection, template, tabDisplay);
+            break
+    }
+}
+
+// 4.5. If the user clicked the summary tab, pass the data from the ‘carSelection’ object (containing the vehicle, color, and package the user has selected, along with the price) to Handlebars.
+
+function renderOptions(data, template, tabDisplay) {
+    if (tabDisplay === 'summary') {
+        var optionsContent = template(data);
+        $optionContainer.append(optionsContent)
+    } else {
+        for (var _0x6975xe = 0; _0x6975xe < data.length; _0x6975xe++) {
+            var optionsContent = template(data[_0x6975xe]);
+            $optionContainer.append(optionsContent)
+        }
+    }
+}
+
+
 
 
 // STEP 5: Update 'carSelection' object
 	// When the user clicks on an option (a vehicle, a color, or a package), update the ‘carSelection’ object to reflect the choice the user made.
 	// Use the data attributes provided in the HTML along with jQuery's data() method to find out information about the option the user has selected.
+
+$('.options-container')['on']('click', 'div[class*="option"]', function() {
+    var _0x6975xf = $(this)['data']('panel');
+    carSelection[_0x6975xf]['choice'] = $(this)['data']('option');
+    carSelection[_0x6975xf]['price'] = $(this)['data']('price');
+    if (carSelection['color']['choice'] !== 'Not Selected' && carSelection['vehicle']['choice'] !== 'Not Selected') {
+        $('.vehicle-display')['attr']('src', 'assets/' + carSelection['vehicle']['choice'] + '-' + carSelection['color']['choice'] + '.jpg')
+    } else {
+        if (carSelection['vehicle']['choice'] !== 'Not Selected') {
+            $('.vehicle-display')['attr']('src', 'assets/' + carSelection['vehicle']['choice'] + '.jpg')
+        }
+    };
+    updateCost()
+});
 
 // STEP 6: Update 'vehicle-display' element
 	// When a user selects (clicks on) a vehicle, the vehicle the user has selected should display in the ‘.vehicle-display’ element. 
@@ -66,6 +135,16 @@ var carSelection = {
 	// The cost should include the price for the vehicle, color, and package the user has selected.
 		// Format the number to include a comma. 
 
+function updateCost() {
+    var _0x6975x11 = carSelection[_0x717f[27]][_0x717f[36]] + carSelection[_0x717f[26]][_0x717f[36]] + carSelection[_0x717f[28]][_0x717f[36]];
+    _0x6975x11 = moneyFormat(_0x6975x11);
+    $(_0x717f[46])[_0x717f[45]](_0x717f[44] + _0x6975x11)
+}
+
+function moneyFormat(_0x6975x13) {
+    return _0x6975x13.toString()[_0x717f[48]](/\B(?=(\d{3})+(?!\d))/g, _0x717f[47])
+}
+displayPanelContent(_0x717f[26])
 
 // Bonus 1: Utilize Firebase to create a database to store which vehicle, color, and package the user has selected.
 
