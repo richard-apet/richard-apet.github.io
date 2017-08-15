@@ -146,5 +146,16 @@ displayPanelContent(compilerIndex[26])
 // Bonus 1: Utilize Firebase to create a database to store which vehicle, color, and package the user has selected.
 
 // Bonus 2: Utilize Google Maps to show the user the nearest dealers according to the user’s current location.
+    
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 40.8054491, lng: -73.9654415},
+      zoom: 20,
+      scrollwheel: false
+    });  
+      
+  };
+
+initMap();
 
 // Bonus 3: Create a “Directions” feature that helps users find directions to specified dealers based off their current and/or given locations.
