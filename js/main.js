@@ -1,8 +1,8 @@
 // GLOBAL VARIABLES:
+// Array of indexed elements, referenced in updateCost and moneyFormat square bracket notation (can be extended throughout this file to minimise code/file size):
+var compilerIndex = ["#options-display", "cadenza", "forte", "optima", "sedona", "soul", "black", "white", "silver", "Rear Camera", "LED Positioning Light", "Rear Camera and LED Positioning Light", "Not Selected", "click", "active", "removeClass", "li", "addClass", "tab", "data", "empty", "on", "html", "#", "-options-template", "compile", "vehicle", "color", "package", "summary", "append", "length", "div[class*='option']", "panel", "choice", "option", "price", "src", "assets/", "-", ".jpg", "attr", ".vehicle-display", ".options-container", "$", "text", ".cost-display", ",", "replace"];
 
-var _0x717f = ["\x23\x6F\x70\x74\x69\x6F\x6E\x73\x2D\x64\x69\x73\x70\x6C\x61\x79", "\x63\x61\x64\x65\x6E\x7A\x61", "\x66\x6F\x72\x74\x65", "\x6F\x70\x74\x69\x6D\x61", "\x73\x65\x64\x6F\x6E\x61", "\x73\x6F\x75\x6C", "\x62\x6C\x61\x63\x6B", "\x77\x68\x69\x74\x65", "\x73\x69\x6C\x76\x65\x72", "\x52\x65\x61\x72\x20\x43\x61\x6D\x65\x72\x61", "\x4C\x45\x44\x20\x50\x6F\x73\x69\x74\x69\x6F\x6E\x69\x6E\x67\x20\x4C\x69\x67\x68\x74", "\x52\x65\x61\x72\x20\x43\x61\x6D\x65\x72\x61\x20\x61\x6E\x64\x20\x4C\x45\x44\x20\x50\x6F\x73\x69\x74\x69\x6F\x6E\x69\x6E\x67\x20\x4C\x69\x67\x68\x74", "\x4E\x6F\x74\x20\x53\x65\x6C\x65\x63\x74\x65\x64", "\x63\x6C\x69\x63\x6B", "\x61\x63\x74\x69\x76\x65", "\x72\x65\x6D\x6F\x76\x65\x43\x6C\x61\x73\x73", "\x6C\x69", "\x61\x64\x64\x43\x6C\x61\x73\x73", "\x74\x61\x62", "\x64\x61\x74\x61", "\x65\x6D\x70\x74\x79", "\x6F\x6E", "\x68\x74\x6D\x6C", "\x23", "\x2D\x6F\x70\x74\x69\x6F\x6E\x73\x2D\x74\x65\x6D\x70\x6C\x61\x74\x65", "\x63\x6F\x6D\x70\x69\x6C\x65", "\x76\x65\x68\x69\x63\x6C\x65", "\x63\x6F\x6C\x6F\x72", "\x70\x61\x63\x6B\x61\x67\x65", "\x73\x75\x6D\x6D\x61\x72\x79", "\x61\x70\x70\x65\x6E\x64", "\x6C\x65\x6E\x67\x74\x68", "\x64\x69\x76\x5B\x63\x6C\x61\x73\x73\x2A\x3D\x22\x6F\x70\x74\x69\x6F\x6E\x22\x5D", "\x70\x61\x6E\x65\x6C", "\x63\x68\x6F\x69\x63\x65", "\x6F\x70\x74\x69\x6F\x6E", "\x70\x72\x69\x63\x65", "\x73\x72\x63", "\x61\x73\x73\x65\x74\x73\x2F", "\x2D", "\x2E\x6A\x70\x67", "\x61\x74\x74\x72", "\x2E\x76\x65\x68\x69\x63\x6C\x65\x2D\x64\x69\x73\x70\x6C\x61\x79", "\x2E\x6F\x70\x74\x69\x6F\x6E\x73\x2D\x63\x6F\x6E\x74\x61\x69\x6E\x65\x72", "\x24", "\x74\x65\x78\x74", "\x2E\x63\x6F\x73\x74\x2D\x64\x69\x73\x70\x6C\x61\x79", "\x2C", "\x72\x65\x70\x6C\x61\x63\x65"];
-
-
+// Variable reference to update tab container in HTML
 var $optionContainer = $('#options-display');
 
 
@@ -70,8 +70,6 @@ function displayPanelContent(tabDisplay) {
     // 4.3 Use a ‘switch’ statement to render the related template displaying appropriate options for that step using Handlebars ( Handlebars templates have been provided in the HTML for the vehicle, color, package, and summary steps).
     // By default (when the page loads), the selection of available vehicles (i.e., images of the five car choices) should display in the sidebar.
 
-    // 4.4: If the user clicked the vehicle, color, or package tab, iterate through the related array and use Handlebars to render a template for each item in that array. 
-
     switch (tabDisplay) {
         case 'vehicle':
             renderOptions(vehicleOptions, template, tabDisplay);
@@ -88,13 +86,14 @@ function displayPanelContent(tabDisplay) {
     }
 }
 
-// 4.5. If the user clicked the summary tab, pass the data from the ‘carSelection’ object (containing the vehicle, color, and package the user has selected, along with the price) to Handlebars.
 
 function renderOptions(content, template, tabDisplay) {
+    // 4.5. If the user clicked the summary tab, pass the data from the ‘carSelection’ object (containing the vehicle, color, and package the user has selected, along with the price) to Handlebars.
     if (tabDisplay === 'summary') {
         var optionsContent = template(content);
         $optionContainer.append(optionsContent)
     } else {
+        // 4.4: If the user clicked the vehicle, color, or package tab, iterate through the related array and use Handlebars to render a template for each item in that array. 
         for (var i = 0; i < content.length; i++) {
             var optionsContent = template(content[i]);
             $optionContainer.append(optionsContent)
@@ -103,48 +102,46 @@ function renderOptions(content, template, tabDisplay) {
 }
 
 
-
-
 // STEP 5: Update 'carSelection' object
-    // When the user clicks on an option (a vehicle, a color, or a package), update the ‘carSelection’ object to reflect the choice the user made.
-    // Use the data attributes provided in the HTML along with jQuery's data() method to find out information about the option the user has selected.
 
 $('.options-container').on('click', 'div[class*="option"]', function() {
+    // When the user clicks on an option (a vehicle, a color, or a package), update the ‘carSelection’ object to reflect the choice the user made.
     var step = $(this).data('panel');
+    // Use the data attributes provided in the HTML along with jQuery's data() method to find out information about the option the user has selected.
     carSelection[step].choice = $(this).data('option');
     carSelection[step].price = $(this).data('price');
+
+// STEP 6: Update 'vehicle-display' element
     if (carSelection.color.choice  !== 'Not Selected' && carSelection.vehicle.choice !== 'Not Selected') {
+        // When a user selects (clicks on) a vehicle, the vehicle the user has selected should display in the ‘.vehicle-display’ element. 
+        // When the user selects (clicks on) a color, the ‘.vehicle-display’ element should be updated to show the vehicle the user chose in that color.
         $('.vehicle-display').attr('src', 'assets/' + carSelection.vehicle.choice + '-' + carSelection.color.choice + '.jpg')
     } else {
         if (carSelection.vehicle.choice !== 'Not Selected') {
             $('.vehicle-display').attr('src', 'assets/' + carSelection.vehicle.choice + '.jpg')
         }
     };
+    // As a vehicle is built, the ‘Cost: footer’ should be updated appropriately:
     updateCost()
 });
 
 
-// STEP 6: Update 'vehicle-display' element
-    // When a user selects (clicks on) a vehicle, the vehicle the user has selected should display in the ‘.vehicle-display’ element. 
-    // When the user selects (clicks on) a color, the ‘.vehicle-display’ element should be updated to show the vehicle the user chose in that color.
-
 // STEP 7: Price calculator
-    // keep track of the price of the vehicle being built, a price determined by the different options selected. 
-    // As a vehicle is built, the ‘Cost: footer’ should be updated appropriately. 
-    // The cost should include the price for the vehicle, color, and package the user has selected.
-        // Format the number to include a comma. 
-
+     
 function updateCost() {
-    console.log('hello');
-    var _0x6975x11 = carSelection[_0x717f[27]][_0x717f[36]] + carSelection[_0x717f[26]][_0x717f[36]] + carSelection[_0x717f[28]][_0x717f[36]];
-    _0x6975x11 = moneyFormat(_0x6975x11);
-    $(_0x717f[46])[_0x717f[45]](_0x717f[44] + _0x6975x11)
+    // The cost should include the price for the vehicle, color, and package the user has selected:
+    // keep track of the price of the vehicle being built, a price determined by the different options selected. 
+    var compiledOptionCost = carSelection[compilerIndex[27]][compilerIndex[36]] + carSelection[compilerIndex[26]][compilerIndex[36]] + carSelection[compilerIndex[28]][compilerIndex[36]];
+    compiledOptionCost = moneyFormat(compiledOptionCost);
+    $(compilerIndex[46])[compilerIndex[45]](compilerIndex[44] + compiledOptionCost)
 }
 
-function moneyFormat(_0x6975x13) {
-    return _0x6975x13.toString()[_0x717f[48]](/\B(?=(\d{3})+(?!\d))/g, _0x717f[47])
+function moneyFormat(decSeparator) {
+    // Format the number to include a comma. 
+    return decSeparator.toString()[compilerIndex[48]](/\B(?=(\d{3})+(?!\d))/g, compilerIndex[47])
 }
-displayPanelContent(_0x717f[26])
+// Compile displayPanelContent function:
+displayPanelContent(compilerIndex[26])
 
 // Bonus 1: Utilize Firebase to create a database to store which vehicle, color, and package the user has selected.
 

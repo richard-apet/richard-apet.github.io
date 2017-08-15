@@ -179,6 +179,17 @@ header {
   text-align: center;
 }
 
+/* Layout */
+
+#options-display {
+  overflow: hidden;
+}
+
+.runningTotal {
+  display: block;
+  margin-top: 20px;
+}
+
 /* Unit 9 link */
 .unit9 {
   height: 50px;
