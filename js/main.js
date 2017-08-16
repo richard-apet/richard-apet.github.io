@@ -166,11 +166,10 @@ $('#save-quote').on('submit', function (e) {
   // grab user's specification from carSelection object
   var quoteDetails = carSelection;
   // create a section for comments data in your db
-  var quotesReference = database.ref('quotes');
+  var quotesReference = database.ref('summary');
   // use the set method to save data to the comments
   quotesReference.push({
-    name: userName,
-    specification: quoteDetails
+    name: userName
   });
 });
 
