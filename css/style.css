@@ -7,8 +7,7 @@ body {
   background-color: #EEE;
 }
 
-.app-container {
-  height: 100vh;
+.app-container, .map-container {
   margin: 0 auto;
   padding: 0;
   background-color: #FFF;
@@ -164,6 +163,7 @@ ul {
 .summary-option li {
   font-size: 18px;
   margin-bottom: 20px;
+  font-weight: normal;
 }
 
 
@@ -189,7 +189,7 @@ header {
 
 #options-display {
   overflow: hidden;
-  height: 40vh;
+  height: 48vh;
   border-left: 1px solid #ddd;
   padding-top: 15px;
 }
@@ -197,6 +197,22 @@ header {
 .panel {
   width: 90%;
   margin: 15px auto;
+}
+
+.four-summary {
+  padding-top: 10px;
+  padding-left: 25px;
+  color: #7B9E87;
+}
+
+.form-summary input {
+  margin-left: 25px;
+}
+
+.form-summary button {
+  margin-right: 25px;
+  color: #FFF;
+  background-color: #7B9E87;
 }
 
 .runningTotal {
@@ -209,6 +225,14 @@ header {
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+}
+
+
+h2 {
+  display: block;
+  color: #7B9E87;
+  padding-top: 15px;
+  padding-left: 30px;
 }
 
 /* Map */

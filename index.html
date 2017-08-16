@@ -31,6 +31,18 @@
         <li><strong>Package</strong> &mdash; <span>{{package.choice}}</span>: ${{package.price}}</li>
       </ul>
     </div>
+
+    <h4 class="four-summary">Save your quote:</h4>
+    
+    <form id="save-quote" class="form-summary">
+      <div class="form-group row">
+        <div class="col-xs-6">
+          <input class="form-control" id="reference" type="text" placeholder="Your name">
+        </div>
+        <button class="btn pull-right">Save quote</button>
+      </div>
+    </form>      
+
   </script>
 
   <div class="container-fluid">
@@ -70,23 +82,24 @@
 
       </div>
 
-      <div class="row">
+    </div>
 
-        <h3>Your local dealership</h3>
+    <div class="row container map-container">
+
+        <h2>Find your local dealership</h2>
 
         <div id="map" class="col-md-12"></div>
 
-      </div>
-
-
     </div>
+
   </div>
 
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script src="js/main.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB84x6GJWPh9fmKRGartp1F2Hto9WsYVH0&callback=initMap"
   type="text/javascript"></script>
-  
+
 </body>
 </html>

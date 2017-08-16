@@ -145,17 +145,65 @@ displayPanelContent(compilerIndex[26])
 
 // Bonus 1: Utilize Firebase to create a database to store which vehicle, color, and package the user has selected.
 
-// Bonus 2: Utilize Google Maps to show the user the nearest dealers according to the user’s current location.
-    
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.8054491, lng: -73.9654415},
-      zoom: 20,
-      scrollwheel: false
-    });  
-      
+  var config = {
+    apiKey: "AIzaSyBU9ZwVVIGe3o-03arYJE0vYFjz1N-Xxdk",
+    authDomain: "js-circuits-c8563.firebaseapp.com",
+    databaseURL: "https://js-circuits-c8563.firebaseio.com",
+    projectId: "js-circuits-c8563",
+    storageBucket: "js-circuits-c8563.appspot.com",
+    messagingSenderId: "95591393609"
   };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+
+$('#save-quote').on('submit', function (e) {
+  // prevent the page from reloading
+  e.preventDefault();
+  // grab user's name as reference from input field
+  var userName = $('#reference').val();
+  // grab user's specification from carSelection object
+  var quoteDetails = carSelection;
+  // create a section for comments data in your db
+  var quotesReference = database.ref('quotes');
+  // use the set method to save data to the comments
+  quotesReference.push({
+    name: userName,
+    specification: quoteDetails
+  });
+});
+
+
+// Bonus 2: Utilize Google Maps to show the user the nearest dealers according to the user’s current location.
+
+function initMap() {
+    // get location
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var userLocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      // Create a map
+    
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: userLocation,
+        zoom: 15,
+        scrollwheel: false,
+      });  
+      
+      // Add location marker
+      var marker = new google.maps.Marker({
+        position: userLocation,
+        map: map,
+        title: 'Your Location'
+      });  
+
+  });
+}
 
 initMap();
 
+    
 // Bonus 3: Create a “Directions” feature that helps users find directions to specified dealers based off their current and/or given locations.
